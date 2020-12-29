@@ -17,6 +17,8 @@ Sessionx.vim
 # Auto-generated tag files
 tags
 
+# Logs
+logs/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

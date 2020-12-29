@@ -1,0 +1,122 @@
+<html>
+      <style type="text/css">
+        @charset "utf-8";
+        body { 
+            background: #ffffff;color: #000008; overflow-x: visible;
+            font-family: "Helvetica Neue", Helvetica, "Liberation Sans",
+                         "Calibri", Arial, sans-serif 
+        }
+        h1, h2, h3, h4, h5, h6
+        {
+            font-family: "Helvetica Neue", Helvetica, "Liberation Sans",
+                         "Calibri", Arial, sans-serif; /* Sans-serif headers */
+            /* font-family: "Liberation Serif", "Georgia", "Times New Roman",
+               serif; /* Serif headers */
+            /* Firefox, Chrome, and Safari do not support the property
+               value "avoid" */
+            page-break-after: avoid;
+        }
+        div, section /* Nested sections */
+            {
+            /* This will increasingly indent nested header sections */
+            margin-left: 2em;
+            }
+        p {}
+        table, img, blockquote, tr, td, th, tbody, thead, tfoot {
+            page-break-inside: avoid !important;
+        }
+        table.main {
+            width:900;
+        }
+        table.skills { }
+        td.name { 
+            text-align:right; vertical-align:top;
+            font-size:18pt; font-family: "Helvetica Neue", Helvetica,
+                                         "Liberation Sans", "Calibri", Arial,
+                                         sans-serif; 
+        }
+        td.section {
+            padding-right:2em; text-align:left; vertical-align:top;
+            font-size: 11pt; font-family: "Helvetica Neue", Helvetica,
+                                          "Liberation Sans", "Calibri", Arial,
+                                          sans-serif; }
+        td.title {
+            text-align:left; vertical-align:top;
+            font-size:12pt; font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Calibri, Arial, sans-serif;
+        }
+        td.smtitle {
+            text-align:left; vertical-align:top;
+            font-size:11pt; font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Calibri, Arial, sans-serif;
+        }
+        td.location {
+            text-align: right ;margin-right:0 ; vertical-align: top;
+            font-size: 11pt; font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Calibri, Arial, sans-serif;
+        }
+        td.date {
+            text-align:right; vertical-align: top;
+            font-size: 12pt; font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Calibri, Arial, sans-serif;
+        }
+        td.rdiscription {
+            text-align:right ; margin-right:0 ; vertical-align: top;
+            font-size:9pt; font-family:"Helvetica Neue", Helvetica, "Liberation Sans", Calibri, Arial, sans-serif;
+        }
+        td.info {
+            text-align:left; vertical-align:top;
+            font-size:9pt; font-family:"Helvetica Neue", Helvetica, "Liberation Sans", Calibri, Arial, sans-serif; 
+        }
+        td.skills {
+            text-align:left; vertical-align: top;
+            font-size:9pt; font-family:"Helvetica Neue", Helvetica, "Liberation Sans", Calibri, Arial, sans-serif;
+        }
+        ul.none {
+            list-style-type:none; margin-left:0;
+            padding-left:0; padding-top:0.3em; padding-bottom:0.3em;
+        }
+        ul.disc {
+            list-style-type:disc; margin-left:0;
+            padding-left:1.5em; padding-top:0.1em; padding-bottom:0.1em;
+        }
+        ul.square {
+            list-style-type:square; margin-left:0;
+            padding-left:1.5em; padding-top:0.1em; padding-bottom:0.1em;
+        }
+        ul.circle {
+            list-style-type:circle; margin-left:0;
+            padding-left:1.5em; padding-top:0.1em; padding-bottom:0.1em;
+        }
+        li {
+            padding-top:0.3em; padding-bottom:0.1em;
+            page-break-inside: avoid;
+        }
+    </style>
+    <head>
+        {% if title %}
+        <title>{{ title }} - microblog</title>
+        {% else %}
+        <title>microblog</title>
+        {% endif %}
+    </head>
+    <body>
+        <div>
+            Microblog:
+            <a href="{{ url_for('index') }}">Home</a>
+            {% if current_user.is_anonymous %}
+            <a href="{{ url_for('login') }}">Login</a>
+            {% else %}
+            <a href="{{ url_for('user', username=current_user.username) }}">Profile</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+            {% endif %}
+        </div>
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </body>
+</html>

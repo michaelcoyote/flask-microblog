@@ -15,6 +15,10 @@ I've made some changes to formatting and have converted to use f-strings where
 it makes code more readable.
 
 
+#### License
+I have made this code MIT same as Grinberg's original 
+
+
 ### Random useful things documented here
 
 All of this stuff is well documented already in the [Flask based microblog series](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)

@@ -17,11 +17,50 @@ it makes code more readable.
 
 ### Random useful things documented here
 
-Basically so I don't have to dig through docs to look this up later
+All of this stuff is well documented already in the [Flask based microblog series](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
+however I'm putting possibly useful information here so I don't have to
+dig through docs to look this up later if I need it.
 
-#### Setting up error mailing
+#### Schema changes
 
-This is in [Chapter 7](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-vii-error-handling) along with error pages.
+In [Ch. 4](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database) there are important
+steps documented that need to be taken when you make a change to the db schema.
+
+The first one is `flask db migrate` which examines the db as described in the
+`models.py` and autogenerates a script to migrate from the current schema to
+the new schema.  
+
+```bash
+flask db migrate -m "short description of changes"
+```
+
+The second command is `flask db upgrade` which runs the migration.
+
+Note: Remember to check in the migration script under the `./migration/`
+directory.
+
+#### Flask shell
+There's a built in python REPL that's accessible using the `flask shell`
+command and loads the entire operating environment for testing purposes.
+This gets set up in the `microblog.py` parent command using the `app.shell_context_processor`
+decorator and controls db models loaded.  If you want to automatically load
+more models you'll need to configure it.
+
+```python
+from app import app, db
+from app.models import User, Post
+
+@app.shell_context_processor
+def make_shell_context():
+    return {'db': db, 'User': User, 'Post': Post}
+```
+
+See end of [Ch. 4](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database)
+for more useful info.
+
+#### Setting up error mailing and testing
+
+This is in [Ch. 7](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-vii-error-handling) along with error pages.
 
 Use these environment variables to send errors through gmail:
 ```bash
@@ -47,16 +86,16 @@ export MAIL_PORT=8025
 
 #### Unit tests
 In [Ch. 8](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-viii-followers/page/0#comments)
-there are some unittests using the `unittest` framework and can be run with `python tests.py`
-
-#### 
+there are some unit tests using the `unittest` framework and can be run with `python tests.py`
 
 ### Notes to myself
 
-Currently on [chapter 10](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-x-email-support)
+Currently on [Ch. 10](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-x-email-support)
 
-#### Things to do before checking in
+#### Things to do before committing
 
-1. Save the pip requirements `pip freeze > requirements.txt`
+1. Save the pip requirements `pip freeze > requirements.txt` if the requirements
+   change
 2. Update the current chapter in the readme
+3. If a db migration has occurred, make sure to check in the migration script
 

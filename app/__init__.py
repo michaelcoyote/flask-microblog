@@ -8,6 +8,7 @@ from flask_mail import Mail
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 from flask_bootstrap import Bootstrap
+from flask_moment import Moment
 
 app = Flask(__name__)
 # define extentions
@@ -18,6 +19,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 mail = Mail(app)
 bootstrap = Bootstrap(app)
+moment = Moment(app)
 # exception mailer
 if not app.debug:
     if app.config['MAIL_SERVER']:

@@ -122,7 +122,7 @@ there are some unit tests using the `unittest` framework and can be run with `py
 
 ### Notes to myself
 
-Currently on [Ch. 10](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-x-email-support)
+Currently on [Ch. 11](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xi-facelift)
 
 #### Things to do before committing
 

@@ -35,11 +35,15 @@ All of this stuff is well documented already in the [Flask based microblog serie
 however I'm putting possibly useful information here so I don't have to
 dig through docs to look this up later if I need it.
 
+### Startup
+
+`flask run` in the correct `venv` will get you there.
+
 
 #### Schema changes
 
-In [Ch. 4](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database) there are important
-steps documented that need to be taken when you make a change to the db schema.
+In [Ch. 4](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database) there are important steps documented that need to be taken when you
+make a change to the db schema.
 
 The first one is `flask db migrate` which examines the db as described in the
 `models.py` and autogenerates a script to migrate from the current schema to
@@ -122,7 +126,13 @@ there are some unit tests using the `unittest` framework and can be run with `py
 
 ### Notes to myself
 
-Currently on [Ch. 13](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xiii-i18n-and-l10n)
+Currently on [Ch. 14](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xiv-ajax)
+
+##### Notes and observations on [Ch. 13: i18n and l10n](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xiii-i18n-and-l10n)
+
+This chapter was a slog as there was a lot to edit, these edits weren't documented well and for me there was little payoff.  Nota bene: if you are reading this and you found this part of the tutorial hard to follow, you're not alone.  My recommendation if you don't want to just DL his code  and jam it in your repo is to look at the output of `pybabel extract -F babel.cfg -k _l -o messages.pot .` and go through the files it checks in order and do the edits.  As a rule you are wrapping messages in `.py` files with `_l(' ')` and messages in jinja files with `{{ _(' ')}}`.  The odd ones are listed in the chapter but it's not always clear.  
+I didn't test this other than to make sure it ran.  It's good to know how this mechanism works but it really slowed me down.  
+I kinda wish this was done after the reorg in ch 15 because you touch so many parts of the code.
 
 #### Things to do before committing
 

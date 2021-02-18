@@ -7,6 +7,7 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = (os.environ.get('DATABASE_URL') or
                                f"sqlite:///{os.path.join(basedir, 'app.db')}")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    LANGUAGES = ['en', 'es']
     # Mailer config
     # if email server is unset then we wil disable error sending
     #  c.f. Chapter 7
